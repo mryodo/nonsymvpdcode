@@ -7,7 +7,7 @@ using Peaks
 using Polynomials
 using Statistics
 
-#using BenchmarkTools
+using BenchmarkTools
 
 using Plots, ColorSchemes, LaTeXStrings, StatsPlots
 pgfplotsx()
@@ -75,7 +75,7 @@ end
 T=2*π;
 n=100;
 tspan=(0.0, n*T);
-Δω=0.2; μ1=0.19; μ2=0.3; p=(Δω, μ1, μ2);
+Δω=0.2; μ1=0.21; μ2=0.21; p=(Δω, μ1, μ2);
 
 u0=[3; 0; 3; 0];
 problem=ODEProblem(f, u0, tspan, p);
@@ -95,21 +95,106 @@ begin
 end
 
 
-  
-indx =  [ pNum * ( i - 1 ) + argmin( x[ pNum * ( i - 1 ) + 1 : minimum( [ pNum * i, size( x, 1 ) ] ) ] ) for i in 1:100 ]
-indx2 =  [ Int( round(pNum/2) ) + pNum * ( i - 1 ) + argmin( x[ Int( round(pNum/2) ) + pNum * ( i - 1 ) + 1 : minimum( [ Int( round(pNum/2) ) + pNum * i, size( x, 1 ) ] ) ] ) for i in 1:100 ] 
-indy =  [ pNum * ( i - 1 ) + argmin( y[ pNum * ( i - 1 ) + 1 : minimum( [ pNum * i, size( y, 1 ) ] ) ] ) for i in 1:100 ] 
-indy2 =  [ Int( round(pNum/2) ) + pNum * ( i - 1 ) + argmin( y[ Int( round(pNum/2) ) + pNum * ( i - 1 ) + 1 : minimum( [ Int( round(pNum/2) ) + pNum * i, size( y, 1 ) ] ) ] ) for i in 1:100 ] 
-
-indx = intersect( indx, indx2 )
-indy = intersect( indy, indy2 )
+pksx, _ = findminima(x)
+pksy, _ = findminima(y) 
 
 begin
       plot()
 
-      scatter!(  t[ indx ][end - 10:end] , x[ indx ][end - 10:end],  color = rwth["blue"][1], labels = L"x(t)"  )
-      scatter!(  t[ indy ][end - 10:end] , y[ indy ][end - 10:end], color = rwth["magenta"][1], labels = L"y(t)"  )
+
+      plot!(
+            t[end-7*pNum:10:end], x[end-7*pNum:10:end], lw = 3, color = rwth["blue"][1], labels = "", alpha = 0.2 )
+       plot!(
+            t[end-7*pNum:10:end], y[end-7*pNum:10:end], lw = 3, color = rwth["magenta"][1], labels = "", alpha = 0.2 )
+
+
+      scatter!(  t[ pksx ][end - 6:end] , x[ pksx ][end - 6:end],  color = rwth["blue"][1], labels = "", marker = 6, alpha = 1.0  )
+      scatter!(  t[ pksy ][end - 6:end] , y[ pksy ][end - 6:end], color = rwth["magenta"][1], labels = "", marker = 6, alpha = 1.0  )
+
 
       plot!( size = (1000, 300) )
 end
 
+# same length is not guaranteed
+timesx, timesy = t[ pksx ], t[ pksy ] 
+freqx, freqy = 1 ./ diff( timesx ), 1 ./ diff( timesx ) 
+
+
+phases = ( size( timesx, 1 ) < size( timesy, 1 ) ) ?  [  minimum( abs.( timesy .- timesx[i] ) ) for i in eachindex( timesx )
+] :  [ minimum( abs.( timesx[ maximum([i - 10,0]) : minimum([i + 10, end]) ] .- timesy[i] ) ) for i in eachindex( timesy )
+]  
+
+stable( x; window = 20 ) = std( x[ end - window : end ] ) / mean( x[ end - window : end ] )
+
+
+function checkSynch( μ1, μ2 ; Δω = 0.2, n = 100, window = 20 )
+      T=2*π;
+      tspan=(0.0, n*T);
+      p=(Δω, μ1, μ2);
+
+      u0=[3; 0; 3; 0];
+      problem=ODEProblem(f, u0, tspan, p);
+      t, x, dx, y, dy=vpdSolve(problem, false, 10);
+      pksx, _ = findminima(x)
+      pksy, _ = findminima(y) 
+
+      timesx, timesy = t[ pksx ], t[ pksy ] 
+      freqx, freqy = 1 ./ diff( timesx ), 1 ./ diff( timesx ) 
+
+      phases = ( size( timesx, 1 ) < size( timesy, 1 ) ) ?  [  minimum( abs.( timesy .- timesx[i] ) ) for i in eachindex( timesx )
+      ] :  [ minimum( abs.( timesx .- timesy[i] ) ) for i in eachindex( timesy )
+      ]  
+      
+
+      return stable( freqx; window = window ), stable( freqy; window = window ), stable( phases; window = window )
+
+end
+
+
+m1 = 0.01:0.005:0.4
+m2 = 0.01:0.005:0.4
+
+sx, sy, sϕ = zeros( size( m1, 1), size( m2, 1 ) ), zeros( size( m1, 1), size( m2, 1 ) ), zeros( size( m1, 1), size( m2, 1 ) )
+
+for i in eachindex( m1 )
+      for j in eachindex( m2 )
+            μ1 = m1[ i ]
+            μ2 = m2[ j ]
+            sx[ i , j ], sy[ i, j ], sϕ[ i, j ] = checkSynch( μ1, μ2 )
+      end
+end
+
+Δω = 0.2
+thr = m2 .^ 2 ./ ( 2 * Δω .- m2 )
+thr2 = m1 .^ 2 ./ ( 2 * Δω .- m1 )
+
+custom_cmap = cgrad( [ rwth["blue"][4], rwth["blue"][1] ], scale = :log10 )
+begin
+      plot( layout = grid(1, 3), margin=5Plots.mm )
+
+      heatmap!(m1, m2, sx, sp = 1, cmap = custom_cmap, aspect_ratio = :equal ) 
+      heatmap!(m1, m2, sy, sp = 2, cmap = custom_cmap, aspect_ratio = :equal )
+      heatmap!(m1, m2, sϕ, sp = 3, cmap = custom_cmap, aspect_ratio = :equal )
+
+      xlims!( m1[1], m1[end] )
+      ylims!( m2[1], m2[end] )
+
+      #=plot!( thr[20:39], m2[20:39], color = rwth["magenta"][1], ls = :dash, lw = 1, labels = "",
+            sp = 3
+      )
+      plot!( m1[20:39], thr2[20:39], color = rwth["red"][1], ls = :dash, lw = 1, labels = "",
+            sp = 3
+      )=#
+
+      xlabel!( L"\mu_1" )
+      ylabel!( L"\mu_2", sp = 1 )
+      title!( L"\textrm{std}(\Omega_x) / \textrm{mean}(\Omega_x)", sp = 1 )
+      title!( L"\textrm{std}(\Omega_y) / \textrm{mean}(\Omega_y)", sp = 2 )
+      title!( L"\textrm{std}(\Delta\varphi) / \textrm{mean}(\Delta\varphi)", sp = 3 )
+      plot!( size = (1000, 300) )
+end
+
+savefig("synch_heatmap.tex")
+savefig("synch_heatmap.pdf")
+
+#@btime checkSynch( 0.25, 0.25 )
