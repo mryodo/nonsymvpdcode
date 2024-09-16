@@ -1,0 +1,246 @@
+% Recommended preamble:
+% \usetikzlibrary{arrows.meta}
+% \usetikzlibrary{backgrounds}
+% \usepgfplotslibrary{patchplots}
+% \usepgfplotslibrary{fillbetween}
+% \pgfplotsset{%
+%     layers/standard/.define layer set={%
+%         background,axis background,axis grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis foreground%
+%     }{
+%         grid style={/pgfplots/on layer=axis grid},%
+%         tick style={/pgfplots/on layer=axis ticks},%
+%         axis line style={/pgfplots/on layer=axis lines},%
+%         label style={/pgfplots/on layer=axis descriptions},%
+%         legend style={/pgfplots/on layer=axis descriptions},%
+%         title style={/pgfplots/on layer=axis descriptions},%
+%         colorbar style={/pgfplots/on layer=axis descriptions},%
+%         ticklabel style={/pgfplots/on layer=axis tick labels},%
+%         axis background@ style={/pgfplots/on layer=axis background},%
+%         3d box foreground style={/pgfplots/on layer=axis foreground},%
+%     },
+% }
+
+\begin{tikzpicture}[/tikz/background rectangle/.style={fill={rgb,1:red,1.0;green,1.0;blue,1.0}, fill opacity={1.0}, draw opacity={1.0}}, show background rectangle]
+\begin{axis}[point meta max={nan}, point meta min={nan}, legend cell align={left}, legend columns={1}, title={}, title style={at={{(0.5,1)}}, anchor={south}, font={{\fontsize{27 pt}{35.1 pt}\selectfont}}, color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, rotate={0.0}, align={center}}, legend style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, line width={1}, solid, fill={rgb,1:red,1.0;green,1.0;blue,1.0}, fill opacity={1.0}, text opacity={1.0}, font={{\fontsize{18 pt}{23.400000000000002 pt}\selectfont}}, text={rgb,1:red,0.0;green,0.0;blue,0.0}, cells={anchor={center}}, at={(0.98, 0.98)}, anchor={north east}}, axis background/.style={fill={rgb,1:red,1.0;green,1.0;blue,1.0}, opacity={1.0}}, anchor={north west}, xshift={1.0mm}, yshift={-1.0mm}, width={137.7mm}, height={125.0mm}, scaled x ticks={false}, xlabel={$\mu_1$}, x tick style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, opacity={1.0}}, x tick label style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, opacity={1.0}, rotate={0}}, xlabel style={at={(ticklabel cs:0.5)}, anchor=near ticklabel, at={{(ticklabel cs:0.5)}}, anchor={near ticklabel}, font={{\fontsize{27 pt}{35.1 pt}\selectfont}}, color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, rotate={0.0}}, xmajorgrids={true}, xmin={-0.018000000000000016}, xmax={0.618}, xticklabels={{$0.0$,$0.1$,$0.2$,$0.3$,$0.4$,$0.5$,$0.6$}}, xtick={{0.0,0.1,0.2,0.30000000000000004,0.4,0.5,0.6000000000000001}}, xtick align={inside}, xticklabel style={font={{\fontsize{18 pt}{23.400000000000002 pt}\selectfont}}, color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, rotate={0.0}}, x grid style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={0.4}, line width={0.7}, solid}, extra x ticks={{0.02,0.04,0.06,0.08,0.12000000000000001,0.14,0.16,0.18,0.22000000000000003,0.24000000000000005,0.26000000000000006,0.28,0.32000000000000006,0.3400000000000001,0.36000000000000004,0.38000000000000006,0.42000000000000004,0.44000000000000006,0.46,0.48000000000000004,0.52,0.54,0.56,0.5800000000000001}}, extra x tick labels={}, extra x tick style={grid={major}, x grid style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={0.06}, line width={0.5}, solid}, major tick length={0.1cm}}, xticklabel pos={left}, x axis line style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, line width={1}, solid}, scaled y ticks={false}, ylabel={$\mu_2$}, y tick style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, opacity={1.0}}, y tick label style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, opacity={1.0}, rotate={0}}, ylabel style={at={(ticklabel cs:0.5)}, anchor=near ticklabel, at={{(ticklabel cs:0.5)}}, anchor={near ticklabel}, font={{\fontsize{27 pt}{35.1 pt}\selectfont}}, color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, rotate={0.0}}, ymajorgrids={true}, ymin={-0.018000000000000016}, ymax={0.618}, yticklabels={{$0.0$,$0.1$,$0.2$,$0.3$,$0.4$,$0.5$,$0.6$}}, ytick={{0.0,0.1,0.2,0.30000000000000004,0.4,0.5,0.6000000000000001}}, ytick align={inside}, yticklabel style={font={{\fontsize{18 pt}{23.400000000000002 pt}\selectfont}}, color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, rotate={0.0}}, y grid style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={0.4}, line width={0.7}, solid}, extra y ticks={{0.02,0.04,0.06,0.08,0.12000000000000001,0.14,0.16,0.18,0.22000000000000003,0.24000000000000005,0.26000000000000006,0.28,0.32000000000000006,0.3400000000000001,0.36000000000000004,0.38000000000000006,0.42000000000000004,0.44000000000000006,0.46,0.48000000000000004,0.52,0.54,0.56,0.5800000000000001}}, extra y tick labels={}, extra y tick style={grid={major}, y grid style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={0.06}, line width={0.5}, solid}, major tick length={0.1cm}}, yticklabel pos={left}, y axis line style={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, line width={1}, solid}, colorbar={false}]
+    \addplot[color={rgb,1:red,0.8902;green,0.0;blue,0.4}, name path={55df6358-06f5-4130-b33a-5579874a1fc6}, only marks, draw opacity={1.0}, line width={0}, solid, mark={*}, mark size={4.5 pt}, mark repeat={1}, mark options={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, fill={rgb,1:red,0.8902;green,0.0;blue,0.4}, fill opacity={1.0}, line width={0.0}, rotate={0}, solid}]
+        table[row sep={\\}]
+        {
+            \\
+            0.01  0.15  \\
+            0.015  0.145  \\
+            0.02  0.14  \\
+            0.025  0.14  \\
+            0.03  0.14  \\
+            0.035  0.135  \\
+            0.04  0.135  \\
+            0.045  0.135  \\
+            0.05  0.13  \\
+            0.055  0.13  \\
+            0.06  0.125  \\
+            0.065  0.125  \\
+            0.07  0.12  \\
+            0.075  0.115  \\
+            0.08  0.115  \\
+            0.085  0.11  \\
+            0.09  0.105  \\
+            0.095  0.105  \\
+            0.1  0.1  \\
+            0.105  0.1  \\
+            0.11  0.095  \\
+            0.115  0.09  \\
+            0.12  0.09  \\
+            0.125  0.085  \\
+            0.13  0.08  \\
+            0.135  0.08  \\
+            0.14  0.075  \\
+            0.145  0.07  \\
+            0.15  0.07  \\
+            0.155  0.065  \\
+            0.16  0.06  \\
+            0.165  0.055  \\
+            0.17  0.05  \\
+            0.175  0.05  \\
+            0.18  0.045  \\
+            0.185  0.04  \\
+            0.19  0.04  \\
+            0.195  0.03  \\
+            0.2  0.025  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.1$}
+    \addplot[color={rgb,1:red,0.0;green,0.3294;blue,0.6235}, name path={87bc6231-2a26-49f2-8e74-7c43316cc273}, only marks, draw opacity={1.0}, line width={0}, solid, mark={*}, mark size={4.5 pt}, mark repeat={1}, mark options={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, fill={rgb,1:red,0.0;green,0.3294;blue,0.6235}, fill opacity={1.0}, line width={0.0}, rotate={0}, solid}]
+        table[row sep={\\}]
+        {
+            \\
+            0.01  0.265  \\
+            0.015  0.26  \\
+            0.02  0.265  \\
+            0.025  0.265  \\
+            0.03  0.26  \\
+            0.035  0.26  \\
+            0.04  0.26  \\
+            0.045  0.26  \\
+            0.05  0.26  \\
+            0.055  0.255  \\
+            0.06  0.255  \\
+            0.065  0.255  \\
+            0.07  0.25  \\
+            0.075  0.25  \\
+            0.08  0.25  \\
+            0.085  0.25  \\
+            0.09  0.25  \\
+            0.095  0.245  \\
+            0.1  0.245  \\
+            0.105  0.24  \\
+            0.11  0.245  \\
+            0.115  0.24  \\
+            0.12  0.235  \\
+            0.125  0.235  \\
+            0.13  0.235  \\
+            0.135  0.235  \\
+            0.14  0.23  \\
+            0.145  0.225  \\
+            0.15  0.225  \\
+            0.155  0.225  \\
+            0.16  0.22  \\
+            0.165  0.22  \\
+            0.17  0.22  \\
+            0.175  0.215  \\
+            0.18  0.215  \\
+            0.185  0.21  \\
+            0.19  0.21  \\
+            0.195  0.205  \\
+            0.2  0.205  \\
+            0.205  0.2  \\
+            0.21  0.195  \\
+            0.215  0.195  \\
+            0.22  0.19  \\
+            0.225  0.19  \\
+            0.23  0.185  \\
+            0.235  0.18  \\
+            0.24  0.175  \\
+            0.245  0.175  \\
+            0.25  0.17  \\
+            0.255  0.165  \\
+            0.26  0.165  \\
+            0.265  0.16  \\
+            0.27  0.16  \\
+            0.275  0.155  \\
+            0.28  0.15  \\
+            0.285  0.15  \\
+            0.29  0.145  \\
+            0.295  0.14  \\
+            0.3  0.13  \\
+            0.305  0.13  \\
+            0.31  0.125  \\
+            0.315  0.12  \\
+            0.32  0.115  \\
+            0.325  0.11  \\
+            0.33  0.105  \\
+            0.335  0.095  \\
+            0.34  0.095  \\
+            0.345  0.09  \\
+            0.35  0.08  \\
+            0.355  0.06  \\
+            0.36  0.02  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.2$}
+    \addplot[color={rgb,1:red,0.0;green,0.3804;blue,0.3961}, name path={ce6ed4d9-2716-4ce5-a5d2-097510110cc6}, only marks, draw opacity={1.0}, line width={0}, solid, mark={*}, mark size={4.5 pt}, mark repeat={1}, mark options={color={rgb,1:red,0.0;green,0.0;blue,0.0}, draw opacity={1.0}, fill={rgb,1:red,0.0;green,0.3804;blue,0.3961}, fill opacity={1.0}, line width={0.0}, rotate={0}, solid}]
+        table[row sep={\\}]
+        {
+            \\
+            0.01  0.325  \\
+            0.0175  0.3325  \\
+            0.025  0.3325  \\
+            0.0325  0.3325  \\
+            0.04  0.3325  \\
+            0.0475  0.3325  \\
+            0.055  0.3325  \\
+            0.0625  0.3325  \\
+            0.07  0.3325  \\
+            0.0775  0.34  \\
+            0.085  0.34  \\
+            0.0925  0.34  \\
+            0.1  0.34  \\
+            0.1075  0.34  \\
+            0.115  0.34  \\
+            0.1225  0.34  \\
+            0.13  0.34  \\
+            0.1375  0.3475  \\
+            0.145  0.3475  \\
+            0.1525  0.3475  \\
+            0.16  0.3475  \\
+            0.1675  0.3475  \\
+            0.175  0.34  \\
+            0.1825  0.34  \\
+            0.19  0.34  \\
+            0.1975  0.34  \\
+            0.205  0.34  \\
+            0.2125  0.3325  \\
+            0.22  0.3325  \\
+            0.2275  0.3325  \\
+            0.235  0.3325  \\
+            0.2425  0.325  \\
+            0.25  0.325  \\
+            0.2575  0.325  \\
+            0.265  0.3175  \\
+            0.2725  0.3175  \\
+            0.28  0.31  \\
+            0.2875  0.31  \\
+            0.295  0.31  \\
+            0.3025  0.3025  \\
+            0.31  0.295  \\
+            0.3175  0.295  \\
+            0.325  0.2875  \\
+            0.3325  0.2875  \\
+            0.34  0.28  \\
+            0.3475  0.28  \\
+            0.355  0.2725  \\
+            0.3625  0.2725  \\
+            0.37  0.265  \\
+            0.3775  0.2575  \\
+            0.385  0.25  \\
+            0.3925  0.2425  \\
+            0.4  0.2425  \\
+            0.4075  0.235  \\
+            0.415  0.2275  \\
+            0.4225  0.2125  \\
+            0.43  0.19  \\
+            0.4375  0.1525  \\
+            0.445  0.115  \\
+            0.4525  0.07  \\
+            0.46  0.025  \\
+            0.4675  0.01  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.3$}
+    \addplot[color={rgb,1:red,0.8902;green,0.0;blue,0.4}, name path={ac1a17c3-e797-4052-ba30-9e9d9aaa23a5}, draw opacity={1.0}, line width={1.4}, dashed, dash pattern={on 0.8cm off 0.2cm}]
+        table[row sep={\\}]
+        {
+            \\
+            0.0  0.2  \\
+            0.2  0.0  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.1 \textrm{, kuramoto}$}
+    \addplot[color={rgb,1:red,0.0;green,0.3294;blue,0.6235}, name path={f2f62230-d6ed-4f94-81aa-78226c4603e7}, draw opacity={1.0}, line width={1.4}, dashed, dash pattern={on 0.8cm off 0.2cm}]
+        table[row sep={\\}]
+        {
+            \\
+            0.0  0.4  \\
+            0.4  0.0  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.2 \textrm{, kuramoto}$}
+    \addplot[color={rgb,1:red,0.0;green,0.3804;blue,0.3961}, name path={c286ad31-eaf4-434b-8cd4-2723dd7024ef}, draw opacity={1.0}, line width={1.4}, dashed, dash pattern={on 0.8cm off 0.2cm}]
+        table[row sep={\\}]
+        {
+            \\
+            0.0  0.6  \\
+            0.6  0.0  \\
+        }
+        ;
+    \addlegendentry {$\Delta\omega = 0.3 \textrm{, kuramoto}$}
+\end{axis}
+\end{tikzpicture}
