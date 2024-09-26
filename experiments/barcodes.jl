@@ -331,5 +331,100 @@ Polynomials.fit(
 
 
 
+Δω = 0.6
+n = 100;
+T=2*π;
+tspan=(0.0, n*T);
+u0 = 3.0 * rand( 4, 1 );
+begin
+      plot( layout = grid(3, 1) )
+
+      μ1, μ2 = 0.08, 0.7
+      p=(Δω, μ1, μ2);
+      problem=ODEProblem(f, u0, tspan, p);
+      t, x, dx, y, dy=vpdSolve(problem, false, 10);
+      pksx, _ = findminima(x)
+      pksy, _ = findminima(y) 
+
+      plot!(
+            t[ pksx[end-7]:end ], x[ pksx[end-7]:end ],
+            lw = 4, color = rwth["blue"][1], labels = L"x(t)",
+            sp = 1
+      )
+      plot!(
+            t[ pksx[end-7]:end ], y[ pksx[end-7]:end ],
+            lw = 4, color = rwth["magenta"][1], labels = L"y(t)",
+            sp = 1
+      )
+      title!(L"\mu_1 = %$(μ1), \; \mu_2 = %$(μ2)", sp = 1 )
+
+      μ1, μ2 = 0.16, 0.7
+      p=(Δω, μ1, μ2);
+      problem=ODEProblem(f, u0, tspan, p);
+      t, x, dx, y, dy=vpdSolve(problem, false, 10);
+      pksx, _ = findminima(x)
+      pksy, _ = findminima(y) 
+
+      plot!(
+            t[ pksx[end-7]:end ], x[ pksx[end-7]:end ],
+            lw = 4, color = rwth["blue"][1], labels = L"x(t)",
+            sp = 2
+      )
+      plot!(
+            t[ pksx[end-7]:end ], y[ pksx[end-7]:end ],
+            lw = 4, color = rwth["magenta"][1], labels = L"y(t)",
+            sp = 2
+      )
+      title!(L"\mu_1 = %$(μ1), \; \mu_2 = %$(μ2)", sp = 2 )
+      
+      μ1, μ2 = 0.32, 0.7
+      p=(Δω, μ1, μ2);
+      problem=ODEProblem(f, u0, tspan, p);
+      t, x, dx, y, dy=vpdSolve(problem, false, 10);
+      pksx, _ = findminima(x)
+      pksy, _ = findminima(y) 
+
+      plot!(
+            t[ pksx[end-7]:end ], x[ pksx[end-7]:end ],
+            lw = 4, color = rwth["blue"][1], labels = L"x(t)",
+            sp = 3
+      )
+      plot!(
+            t[ pksx[end-7]:end ], y[ pksx[end-7]:end ],
+            lw = 4, color = rwth["magenta"][1], labels = L"y(t)",
+            sp = 3
+      )
+      title!(L"\mu_1 = %$(μ1), \; \mu_2 = %$(μ2)", sp = 3 )
+
+
+      plot!( size = (1000, 750) )
+end
+
+
+savefig("examples_trio.tex")
+savefig("examples_trio.pdf")
+
+
+
+μ1, μ2 = 0.16, 0.7
+p=(Δω, μ1, μ2);
+problem=ODEProblem(f, u0, tspan, p);
+t, x, dx, y, dy=vpdSolve(problem, false, 10);
+pksx, _ = findminima(x)
+pksy, _ = findminima(y) 
+
+begin
+      plot()
+
+      plot!( t[pksy[end-7]:end], y[pksy[end-7]:end], color = rwth["magenta"][1], alpha = 0.5, lw = 4, label=L"y(t)"
+      )
+      scatter!(
+            t[pksy[end-7:end]],  y[pksy[end-7:end]], m = 6, color = rwth["magenta"][1], label=""
+      )
+
+      plot!( size = (1000, 300) )
+end
+
+y[pksx[end-7:end]]
 
 
