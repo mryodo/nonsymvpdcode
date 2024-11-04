@@ -435,7 +435,7 @@ begin
     plot!( m1[20:39], thr2[20:39], color = rwth["red"][1], ls = :dash, lw = 1, labels = "",
           sp = 3
     )=#
-
+    
     xlabel!( L"\mu_1" )
     ylabel!( L"\mu_2", sp = 1 )
     title!( L"\Delta\varphi( \mu_1, \mu_2)", sp = 1 )

@@ -7,6 +7,8 @@ using Peaks
 using Polynomials
 using Statistics
 
+using DataInterpolations
+
 using BenchmarkTools
 
 using Plots, ColorSchemes, LaTeXStrings, StatsPlots
@@ -64,10 +66,10 @@ function vpdSolve(problem::ODEProblem, interp::Bool, mult::Int64)
           #itp=LinearInterpolation(t, dx); dx=itp(t_new);
           #itp=LinearInterpolation(t, y); y=itp(t_new);
           #itp=LinearInterpolation(t, dy); dy=itp(t_new);
-          itp = cubic_spline_interpolation(t, x); x = itp( t_new )
-          itp = cubic_spline_interpolation(t, dx); dx = itp( t_new )
-          itp = cubic_spline_interpolation(t, y); y = itp( t_new )
-          itp = cubic_spline_interpolation(t, dy); dy = itp( t_new )
+          itp = CubicSpline(x, t); x = itp( t_new )
+          itp = CubicSpline(dx, t); dx = itp( t_new )
+          itp = CubicSpline(y, t); y = itp( t_new )
+          itp = CubicSpline(dy, t); dy = itp( t_new )
           t=t_new;
           return t, x, dx, y, dy
       else
